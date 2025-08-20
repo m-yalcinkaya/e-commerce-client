@@ -16,6 +16,7 @@ import { UiModule } from './ui/ui-module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [App],
@@ -32,6 +33,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideClientHydration(withEventReplay()),
+    { provide: 'baseUrl', useValue: 'https://localhost:7104/api', multi: true },
+    provideHttpClient(),
   ],
   bootstrap: [App],
 })
