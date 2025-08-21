@@ -11,6 +11,7 @@ import {
   MessageType,
   Position,
 } from '../../../../services/admin/alertify';
+import { error } from 'node:console';
 
 @Component({
   selector: 'app-create',
@@ -40,13 +41,23 @@ export class Create extends BaseComponent implements OnInit {
     create_product.stock = parseInt(stock.value);
     create_product.price = parseFloat(price.value);
 
-    this.productService.create(create_product, () => {
-      this.hideSpinner(SpinnerType.BallBeat);
-      this.alertify.message('Ürün başarıyla girilmiştir.', {
-        messageType: MessageType.Success,
-        dismissOthers: true,
-        position: Position.TopRight,
-      });
-    });
+    this.productService.create(
+      create_product,
+      () => {
+        this.hideSpinner(SpinnerType.BallBeat);
+        this.alertify.message('Ürün başarıyla girilmiştir.', {
+          messageType: MessageType.Success,
+          dismissOthers: true,
+          position: Position.TopRight,
+        });
+      },
+      (errorMessage) => {
+        this.alertify.message(errorMessage, {
+          dismissOthers: true,
+          messageType: MessageType.Error,
+          position: Position.TopRight,
+        });
+      }
+    );
   }
 }
