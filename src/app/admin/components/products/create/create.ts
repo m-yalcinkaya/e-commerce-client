@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, output } from '@angular/core';
 import { Product } from '../../../../services/common/models/product';
 import { Create_Product } from '../../../../contracts/create_product';
 import {
@@ -30,6 +30,8 @@ export class Create extends BaseComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  @Output() createdProduct: EventEmitter<Create_Product> = new EventEmitter();
+
   create(
     name: HTMLInputElement,
     stock: HTMLInputElement,
@@ -50,6 +52,7 @@ export class Create extends BaseComponent implements OnInit {
           dismissOthers: true,
           position: Position.TopRight,
         });
+        this.createdProduct.emit(create_product);
       },
       (errorMessage) => {
         this.alertify.message(errorMessage, {

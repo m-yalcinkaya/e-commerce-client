@@ -7,10 +7,12 @@ import { Create } from './create/create';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
-import { BaseComponent } from '../../../base-component/base-component';
+import { List } from './list/list';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @NgModule({
-  declarations: [Products, Create],
+  declarations: [Products, Create, List],
   imports: [
     CommonModule,
     RouterModule.forChild([{ path: '', component: Products }]),
@@ -18,6 +20,8 @@ import { BaseComponent } from '../../../base-component/base-component';
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
+    MatTableModule,
+    MatPaginator,
   ],
 })
 export class ProductsModule {}
