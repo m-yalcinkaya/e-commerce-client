@@ -30,6 +30,28 @@
       <td mat-cell *matCellDef="let element">{{ element.updatedDate }}</td>
     </ng-container>
 
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <img src="assets/images/edit.png" alt="delete" width="20" height="20" />
+        <!--<button matIconButton aria-label="edit button" class="edit-button">
+          <mat-icon>edit</mat-icon>
+        </button>-->
+      </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td
+        [id]="element.id"
+        mat-cell
+        *matCellDef="let element"
+        appDelete
+        (callback)="getProducts()"
+      ></td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>

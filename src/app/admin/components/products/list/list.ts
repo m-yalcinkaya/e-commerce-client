@@ -16,6 +16,8 @@ import { MatPaginator } from '@angular/material/paginator';
 
 import { ViewChild } from '@angular/core';
 
+declare var $: any;
+
 @Component({
   selector: 'app-list',
   standalone: false,
@@ -37,6 +39,8 @@ export class List extends BaseComponent implements OnInit {
     'stock',
     'createdDate',
     'updatedDate',
+    'edit',
+    'delete',
   ];
 
   dataSource: MatTableDataSource<any> = null;
